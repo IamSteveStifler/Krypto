@@ -1,0 +1,6 @@
+.img-class{
+    object-fit: 'cover';
+    border-radius: 55;
+    width: '50vw';
+    height: '30vh';
+}
