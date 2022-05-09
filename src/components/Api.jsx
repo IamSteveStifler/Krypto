@@ -8,13 +8,12 @@ const Api = () => {
   
     useEffect(() => {
       const url = "https://coinranking1.p.rapidapi.com/coins";
-  
+      
       fetch(url, {
         method: "GET",
             headers: {
               "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
-              "X-RapidAPI-Key":
-                "09ce2c7a91mshd131a5e9fab40a1p157173jsne9d25800837c",
+              "X-RapidAPI-Key": "",
             },
       }).then((res)=>{
         res.json().then((obj)=>{
