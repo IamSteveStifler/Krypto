@@ -1,22 +1,24 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import millify from "millify";
 import './Frame.css';
 const Frame = (props) => {
-  let img = props.data.img;
+  let img = props.img;
+
+  console.log(props);
   return (
     <>
-          <Card style={{ width: "18rem" }} >
+          <Card style={{ width: "18rem" }} className = "cards" >
             <Card.Img variant="top" src = {img} className = "img-class" />
             <Card.Body >
-              <Card.Title>{props.data.name} <p>({props.data.symbol})</p></Card.Title>
+              <Card.Title>{props.name} <p>{props.symbol}</p></Card.Title>
               
             </Card.Body>
             <ListGroup className="list-group-flush">
-              <ListGroupItem>Price : ${millify(props.data.price)}</ListGroupItem>
-              <ListGroupItem>24hr Volume : {millify(props.data.volume)}</ListGroupItem>
-              <ListGroupItem>Market Cap : {millify(props.data.marketcap)}</ListGroupItem>
-              <ListGroupItem>24h low : ${millify(props.data.low)}</ListGroupItem><ListGroupItem>24h high : ${millify(props.data.high)}</ListGroupItem>
+              <ListGroupItem>Price : ${props.price}</ListGroupItem>
+              <ListGroupItem>24hr Volume : {millify(props.volume)}</ListGroupItem>
+              <ListGroupItem>Market Cap : {millify(props.marketcap)}</ListGroupItem>
+              <ListGroupItem>24h low : $ {millify(props.low)}</ListGroupItem><ListGroupItem>24h high : ${millify(props.high)}</ListGroupItem>
             </ListGroup>
 
           </Card>
