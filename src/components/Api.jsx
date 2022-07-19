@@ -3,9 +3,10 @@ import Frame from "./Frame";
 import { Row, Col, Container, Navbar } from "react-bootstrap";
 
 const Api = () => {
-    const [coinObj, setCoinObj] = useState([]);
-    const [refresh, setRefresh] = useState(false);
-  
+    const refresh = false;
+    let arr = []
+    let[coinObj, setCoinObj] = useState(arr);
+
     useEffect(() => {
       const url = "https://coinranking1.p.rapidapi.com/coins";
       
@@ -13,15 +14,30 @@ const Api = () => {
         method: "GET",
             headers: {
               "X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
-              "X-RapidAPI-Key": "",
+              "X-RapidAPI-Key": ""
             },
       }).then((res)=>{
         res.json().then((obj)=>{
           console.log(obj);
           setCoinObj(obj.data.coins);
+          
         })
       })
     }, [refresh]);
+
+
+    console.log(coinObj);
+
+    // let data = {  
+    //   name : coinObj[0].name,
+    //   price : coinObj[0].price,
+    //   img : coinObj[0].iconUrl,
+    //   volume : coinObj[0]["24hVolume"],
+    //   symbol : coinObj[0].symbol,
+    //   marketcap : coinObj[0].marketCap,
+    //   high : coinObj[0].sparkline[0],
+    //   low : coinObj[0].sparkline[26]
+    // }
   
     return (
       <>
@@ -35,26 +51,26 @@ const Api = () => {
         <br />
         <Container>
           <Row>
-        {
-        
-          coinObj.map( item =>{
-              let data = {  
-                name : item.name,
-                price : item.price,
-                img : item.iconUrl,
-                volume : item["24hVolume"],
-                symbol : item.symbol,
-                marketcap : item.marketCap,
-                high : item.sparkline[0],
-                low : item.sparkline[26]
-              }
-              
-              return( 
-                  <Col className="m-5 border-0 shadow" ><Frame data = {data}/></Col>
-              )
-              
-          })
-        }
+            
+            {
+              coinObj.map((ele) => (
+                <Col className="m-5 border-0 shadow" ><Frame 
+                  name = {ele.name}
+                  price = {ele.price}
+                  img = {ele.iconUrl}
+                  volume = {ele["24hVolume"]}
+                  symbol = {ele.symbol}
+                  marketcap = {ele.marketCap}
+                  high = {ele.sparkline[0]}
+                  low = {ele.sparkline[24]}
+                /></Col> 
+              ))
+
+
+            }
+
+            {/* <Col className="m-5 border-0 shadow" ><Frame data = {data}/></Col> */}
+
         </Row>
         </Container>
       
